@@ -11,6 +11,11 @@ pipeline {
                 bat 'docker build -t todo-app .'
             }
           }
+          stage('Docker Hub Login') {
+            steps {
+                bat 'docker login -u adimulam22 -p Adimulam@2213'
+            }
+        }
           stage ('Push Image to Docker Hub'){
             steps{
                 bat 'docker tag todo-app adimulam22/todo-app'
@@ -19,8 +24,8 @@ pipeline {
           }
           stage('Create Ec2 instance'){
             steps{
-                bat 'ssh -i mykey.pem ubuntu@YOUR-EC2-PUBLIC-IP "docker pull adimulam22/todo-app"'
-                bat 'ssh -i mykey.pem ubuntu@YOUR-EC2-PUBLIC-IP "docker run -d -p 8083:80 adimulam22/todo-app"'
+                bat 'ssh -i D:\\Downloads\\todo-app-keypair.pem ubuntu@43.205.177.84 "docker pull adimulam22/todo-app"'
+                bat 'ssh -i D:\\Downloads\\todo-app-keypair.pem ubuntu@43.205.177.84 "docker run -d -p 8083:80 adimulam22/todo-app"'
             }
           }
        }
