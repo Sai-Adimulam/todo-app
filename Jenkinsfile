@@ -24,8 +24,8 @@ pipeline {
           }
           stage('Create Ec2 instance'){
             steps{
-                bat 'ssh -i D:\\Downloads\\todo-app-keypair.pem ubuntu@43.205.177.84 "docker pull adimulam22/todo-app"'
-                bat 'ssh -i D:\\Downloads\\todo-app-keypair.pem ubuntu@43.205.177.84 "docker run -d -p 8083:80 adimulam22/todo-app"'
+                bat 'ssh -i F:\\keypairs\\todo-app-keypair.pem ubuntu@43.205.177.84 "docker pull adimulam22/todo-app"'
+                bat 'ssh -i F:\\keypairs\\todo-app-keypair.pem ubuntu@43.205.177.84 "docker run -d -p 8083:80 adimulam22/todo-app"'
             }
           }
        }
