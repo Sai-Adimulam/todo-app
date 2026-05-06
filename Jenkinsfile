@@ -3,8 +3,7 @@ pipeline {
        stages {
           stage ('Pull the code from github'){
             steps{
-                git branch: 'main'
-                git 'https://github.com/Sai-Adimulam/todo-app.git'
+                git branch: 'main',url: 'https://github.com/Sai-Adimulam/todo-app.git'
             }
           }
           stage ('Build the Docker Image'){
@@ -20,8 +19,8 @@ pipeline {
           }
           stage('Create Ec2 instance'){
             steps{
-                bat 'ssh -i mykey.pem ubuntu@Ec2-ip docker pull adimulam22/todo-app'
-                bat 'ssh -i mykey.pem ubuntu@Ec2-ip docker run -d -p 8083:80 adimulam22/todo-app'
+                bat 'ssh -i mykey.pem ubuntu@YOUR-EC2-PUBLIC-IP "docker pull adimulam22/todo-app"'
+                bat 'ssh -i mykey.pem ubuntu@YOUR-EC2-PUBLIC-IP "docker run -d -p 8083:80 adimulam22/todo-app"'
             }
           }
        }
