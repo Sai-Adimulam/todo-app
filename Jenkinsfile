@@ -3,6 +3,7 @@ pipeline {
        stages {
           stage ('Pull the code from github'){
             steps{
+                git branch: 'main'
                 git 'https://github.com/Sai-Adimulam/todo-app.git'
             }
           }
